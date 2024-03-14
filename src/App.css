@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 #root {
   margin: 0;
   padding: 0;
@@ -7,4 +8,7 @@
   height: 100vh;
   outline: none !important;
   font-family: "Roboto", sans-serif !important;
+}
+::-webkit-scrollbar {
+  display: none;
 }

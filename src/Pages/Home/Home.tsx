@@ -1,11 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { HiPlus } from "react-icons/hi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAllProducts } from "../../features/apiCall";
+import { AppDispatch, RootState } from "../../features/store";
+import { Product } from "../../utils/types";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { products } = useSelector((state: any) => state.products);
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+  const { token } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    dispatch(getAllProducts(token));
+  }, [dispatch, token]);
   return (
     <div className="w-full bg-primary mt-2 rounded mr-3 max-w-full md:m-auto md:w-11/12">
       <div className="flex justify-between m-4">
@@ -18,7 +27,7 @@ const Home = () => {
           Add Product
         </button>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col h-[400px] overflow-y-auto">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm font-light text-surface dark:text-white">
             <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
@@ -45,7 +54,7 @@ const Home = () => {
             </thead>
             <tbody>
               {products.length > 0 ? (
-                products.map((product: any, index: number) => (
+                products.map((product: Product, index: number) => (
                   <tr className="border-b border-neutral-200 dark:border-white/10">
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {index + 1}

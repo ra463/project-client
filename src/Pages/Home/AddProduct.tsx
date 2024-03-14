@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosUtil";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([{ name: "", qty: 0, rate: 0 }]);
@@ -45,11 +47,12 @@ const AddProduct = () => {
         const blob = new Blob([byteArray], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
 
-        // Open the PDF in a new tab
         window.open(url);
+        navigate("/");
         alert(data.message);
       }
     } catch (error: any) {
+      setLoading(false);
       alert(error.response.data.message);
     }
   };

@@ -14,6 +14,7 @@ export default {
       primary: "#1c1c1e",
       input: "#313133",
       btn: "#f96d00",
+      white: "#f9f9f9",
       tag: "#98a6ad",
       green: "#10c469",
       lightgreen: "rgb(22 163 74)",
