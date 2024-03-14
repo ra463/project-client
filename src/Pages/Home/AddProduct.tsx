@@ -48,7 +48,7 @@ const AddProduct = () => {
         const blob = new Blob([byteArray], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
 
-        window.open(url);
+        window.location.href = url;
         navigate("/");
         alert(data.message);
       }

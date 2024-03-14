@@ -1,16 +1,24 @@
 # React + TypeScript + Vite + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Server is hosted on Render
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Clone this Repo
-
-To run this project just `clone` this repo and do this:
+- To run this project just `clone` these both repo and run locally.
 
 ```js
-npm i // to install the dependencies
+Server - https://github.com/ra463/project-server.git
+Client - https://github.com/ra463/project-client.git
+
+// Set ENV for running in localhost
+
+JWT_SECRET=dtyhejfgeyggsjedgjurgehjjdkbhjjsbdkjnfmdekhjnnsh272u3ty2jhvhrejdt
+
+JWT_EXPIRE=2d
+
+PORT=4000
+
+MONGO_URI="your mongo url"
 ```
+
+## PDF Generation
+
+- To generate PDF run server & client both locally 
