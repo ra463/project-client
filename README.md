@@ -2,7 +2,7 @@
 
 ## Server is hosted on Render
 
-- Server hosted on render so wait for atleast 1 minute foe server to respond
+- Server hosted on render so wait for atleast 1 minute for server to respond
 - Maybe while using deployed version of app PDF may not Generate
 - To generate PDF run server & client both locally
 - To run this project just `clone` these both repo and run locally
