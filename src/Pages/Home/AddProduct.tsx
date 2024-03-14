@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosUtil";
 
@@ -45,7 +46,7 @@ const AddProduct = () => {
         setLoading(false);
         alert(data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.response.data.message);
     }
   };
