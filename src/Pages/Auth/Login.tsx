@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../features/authSlice";
 import axiosInstance from "../../utils/axiosUtil";
+import { PulseLoader } from "react-spinners";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -79,9 +80,14 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full rounded bg-btn p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in"
+            disabled={loading ? true : false}
+            className={`w-full rounded bg-btn p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in-out font-bold ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
-            {loading ? "Loading..." : "LOGIN TO CONTINUE"}
+            {loading ? (
+              <PulseLoader size="8" color="#f9f9f9" />
+            ) : (
+              "LOGIN TO CONTINUE"
+            )}
           </button>
         </form>
         <Link

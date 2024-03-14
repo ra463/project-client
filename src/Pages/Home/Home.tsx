@@ -27,7 +27,7 @@ const Home = () => {
           Add Product
         </button>
       </div>
-      <div className="flex flex-col h-[400px] overflow-y-auto">
+      <div className="flex flex-col h-[72vh] overflow-y-auto">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm font-light text-surface dark:text-white">
             <thead className="border-b border-neutral-200 font-medium dark:border-white/10">
@@ -55,7 +55,10 @@ const Home = () => {
             <tbody>
               {products.length > 0 ? (
                 products.map((product: Product, index: number) => (
-                  <tr className="border-b border-neutral-200 dark:border-white/10">
+                  <tr
+                    key={index}
+                    className="border-b border-neutral-200 dark:border-white/10"
+                  >
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {index + 1}
                     </td>

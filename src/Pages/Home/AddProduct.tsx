@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosUtil";
 import { useNavigate } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 const AddProduct = () => {
   const token = localStorage.getItem("token");
@@ -62,14 +63,14 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="w-full mt-2 rounded mr-3 max-w-full md:m-auto md:w-11/12">
-      <div className="card-box mt-5 p-5 pt-3 shadow-md rounded bg-primary xll:w-96 m-auto sm:w-11/12">
+    <div className="w-full mt-1 rounded mr-3 max-w-full md:m-auto md:w-11/12">
+      <div className="card-box mt-5 p-5 pt-3 shadow-md rounded bg-primary xll:w-[500px] m-auto sm:w-11/12">
         <div className="text-center">
           <h3 className="text-white font-bold text-xl my-5 mt-3">
             Add Product
           </h3>
         </div>
-        <form className="flex flex-col gap-3 max-h-80 overflow-y-auto">
+        <form className="flex flex-col gap-3 max-h-[65vh] overflow-y-auto">
           {products.map((product, index) => (
             <div key={index} className="flex items-center gap-2 flex-col">
               <span>
@@ -111,23 +112,26 @@ const AddProduct = () => {
             <button
               type="button"
               onClick={removeProduct}
-              className="bg-red text-white rounded p-2 mt-2 hover:bg-input transition duration-200 hover:ease-in"
+              className="bg-red text-white rounded p-2 mt-2 hover:bg-input transition duration-200 hover:ease-in font-bold"
             >
               REMOVE LAST PRODUCT
             </button>
           )}
           <button
             onClick={addMoreProduct}
-            className="w-full rounded bg-btn p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in"
+            className="w-full rounded bg-btn p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in font-bold"
           >
             ADD MORE PRODUCT'S
           </button>
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full rounded bg-lightgreen p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in"
+            disabled={loading ? true : false}
+            className={`w-full rounded bg-lightgreen p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in font-bold ${
+              loading ? "cursor-not-allowed" : ""
+            }`}
           >
-            {loading ? "LOADING..." : "SUBMIT"}
+            {loading ? <PulseLoader size="8" color="#f9f9f9" /> : "SUBMIT"}
           </button>
         </form>
       </div>
