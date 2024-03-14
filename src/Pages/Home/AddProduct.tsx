@@ -6,15 +6,10 @@ const AddProduct = () => {
   const token = localStorage.getItem("token");
 
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([
-    { name: "", quantity: 0, price: 0, totalPrice: 0 },
-  ]);
+  const [products, setProducts] = useState([{ name: "", qty: 0, rate: 0 }]);
 
   const addMoreProduct = () => {
-    setProducts([
-      ...products,
-      { name: "", quantity: 0, price: 0, totalPrice: 0 },
-    ]);
+    setProducts([...products, { name: "", qty: 0, rate: 0 }]);
   };
 
   const handleInputChange = (
@@ -24,6 +19,7 @@ const AddProduct = () => {
     const { name, value } = event.target;
     const newProducts = [...products];
     newProducts[index] = { ...newProducts[index], [name]: value };
+
     setProducts(newProducts);
   };
 
@@ -44,6 +40,13 @@ const AddProduct = () => {
 
       if (data.success) {
         setLoading(false);
+        console.log(data.invoice.data);
+        const byteArray = new Uint8Array(data.invoice.data);
+        const blob = new Blob([byteArray], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        // Open the PDF in a new tab
+        window.open(url);
         alert(data.message);
       }
     } catch (error: any) {
@@ -66,7 +69,12 @@ const AddProduct = () => {
         <form className="flex flex-col gap-3 max-h-80 overflow-y-auto">
           {products.map((product, index) => (
             <div key={index} className="flex items-center gap-2 flex-col">
-              <span>Product - {index + 1}</span>
+              <span>
+                Product - {index + 1}{" "}
+                <span className="text-sm text-btn">
+                  (Total will be calculated dynamically)
+                </span>
+              </span>
               <input
                 type="text"
                 value={product.name}
@@ -79,29 +87,20 @@ const AddProduct = () => {
               <input
                 type="number"
                 className="p-2 rounded bg-input outline-none placeholder:text-sm w-full"
-                placeholder={product.quantity === 0 ? "Product Quantity" : ""}
+                placeholder={product.qty === 0 ? "Product Quantity" : ""}
                 required
                 onChange={(e) => handleInputChange(index, e)}
-                name="quantity"
-                value={product.quantity === 0 ? "" : product.quantity}
+                name="qty"
+                value={product.qty === 0 ? "" : product.qty}
               />
               <input
                 type="number"
                 className="p-2 rounded bg-input outline-none placeholder:text-sm w-full"
-                placeholder={product.price === 0 ? "Product Price" : ""}
+                placeholder={product.rate === 0 ? "Product Price" : ""}
                 required
                 onChange={(e) => handleInputChange(index, e)}
-                name="price"
-                value={product.price === 0 ? "" : product.price}
-              />
-              <input
-                type="number"
-                className="p-2 rounded bg-input outline-none placeholder:text-sm w-full"
-                placeholder={product.totalPrice === 0 ? "Total Price" : ""}
-                required
-                onChange={(e) => handleInputChange(index, e)}
-                name="totalPrice"
-                value={product.totalPrice === 0 ? "" : product.totalPrice}
+                name="rate"
+                value={product.rate === 0 ? "" : product.rate}
               />
             </div>
           ))}
