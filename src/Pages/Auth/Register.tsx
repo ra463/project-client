@@ -86,7 +86,7 @@ const Register = () => {
               loading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
           >
-            {loading ? <PulseLoader size="8" color="#f9f9f9" /> : "SIGN UP"}
+            {loading ? <PulseLoader size="8px" color="#f9f9f9" /> : "SIGN UP"}
           </button>
         </form>
         <Link

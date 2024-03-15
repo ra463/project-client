@@ -84,7 +84,7 @@ const Login = () => {
             className={`w-full rounded bg-btn p-2.5 text-sm hover:bg-input transition duration-200 hover:ease-in-out font-bold ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
             {loading ? (
-              <PulseLoader size="8" color="#f9f9f9" />
+              <PulseLoader size="8px" color="#f9f9f9" />
             ) : (
               "LOGIN TO CONTINUE"
             )}

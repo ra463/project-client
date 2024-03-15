@@ -131,7 +131,7 @@ const AddProduct = () => {
               loading ? "cursor-not-allowed" : ""
             }`}
           >
-            {loading ? <PulseLoader size="8" color="#f9f9f9" /> : "SUBMIT"}
+            {loading ? <PulseLoader size="8px" color="#f9f9f9" /> : "SUBMIT"}
           </button>
         </form>
       </div>
